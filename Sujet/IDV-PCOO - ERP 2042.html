@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<!-- saved from url=(0091)https://prepintra-api.etna-alternance.net/sessions/1581/activities/5447/download/sujet.html -->
+<html lang="fr" data-ember-extension="1"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <link href="./IDV-PCOO - ERP 2042_files/sujet-html-prep.css" type="text/css" rel="stylesheet">
+        <title>IDV-PCOO - ERP 2042</title>
+    <style type="text/css"></style></head>
+    <body>
+        <h1>IDV-PCOO - ERP 2042</h1>
+
+	<h2>Abstract</h2>
+	<p>
+	  Le projet fut difficile à trouver. Entre simplement des exercices de mise en application de design pattern, et un outil de la vie réelle sans nécessité de connaissance approfondie des langages …
+	  Alors voici le projet, il n’est pas fou-fou, mais permets de mettre en application les design pattern dans un projet du monde réel.</p>
+
+	<p>  Votre directeur souhaite mettre en place un outil de gestion de processus. L’entreprise souhaite utiliser ce produit pour gérer un peu tout. Les prospects de l’entreprise, les devis, les factures, etc … Oui, vous lui avez répété 1000 fois qu’il existait déjà ce type d’outil sur internet, mais que voulez-vous, c’est lui le boss.
+	  Dans son infinie bonté, il vous présente rapidement comment : « ça doit vite fait marcher ». Mais rappelez-vous de vos expériences passées, combien de fois, une fois le produit fini, il est revenu vers vous pour vous demander de modifier la façon dont ça fonctionne, car, bien entendu, vous aviez mal compris ? (Rappel : c’est lui le boss)
+	  </p>
+
+<h2>ERP 2042</h2>
+<p>	  Nous considèrerons que la sécurité, c’est surfait, donc les utilisateurs seront gérés par une liste dans un fichier TEXT.</p>
+
+<p>	  Alors voilà le topo. Idéalement on fait une interface graphique vite fait. Au pire en CLI, mais bon, certains ont dit que comme vous étiez bon, avec une interface graphique ne serais pas un souci pour vous.
+	  Au démarrage, l’utilisateur choisit son nom parmi une liste qui aura été récupérée dans un fichier texte à la racine de votre application par exemple.</p>
+
+<p>	  Il faut gérer 3 types de processus pour commencer : </p>
+<ul>
+  <li> Les prospects</li>
+  <li> Les devis</li>
+  <li> Les factures</li>
+</ul>
+<p>	  Chaque type de processus à un déroulé spécifique :
+</p><h3>Prospect :</h3><p></p>
+<ul>
+  <li>	  Création d’un prospect</li>
+  <li>	  Validation d’un contact avec le prospect</li>
+  <li>	  Confirmation des besoins d’un prospect</li>
+  <li>	  Passage vers le service devis</li>
+</ul>
+<p></p><h3>Devis :</h3><p></p>
+<ul>
+  <li>	  Récupération de la fiche prospect et création du devis</li>
+  <li>	  Envois du devis chez le client</li>
+  <li>	  Retour du devis de la part du client</li>
+  <li>	  Vérification qu’il est conforme sinon, retour à l’étape d’envois</li>
+  <li>	  Passage vers le service Facturation</li>
+</ul>
+<p></p><h3>Facturation :</h3><p></p>
+<ul>
+	  <li>Récupération du devis signé</li>
+	  <li>Envois de la facture au client</li>
+	  <li>Validation de la facture</li>
+	  <li>réception du paiement</li>
+</ul>
+<p>Bien entendu à chaque étape du déroulé, il y a deux éléments possibles :</p>
+<ul>
+  <li>	  L’étape est validée et on passe à la suivante</li>
+  <li>	  L’étape est rejetée, car une erreur s’est glissée dedans.<br>
+    Et parfois suivant les cas, une troisième étape est possible :</li>
+  <li>	  Le prospect / projet est abandonné, et alors on revient à la case départ.</li>
+</ul>
+<p>	  Dans le cadre de votre projet, il vous est demandé de gérer ce processus et d’en tenir un fichier de Log.
+	  Une hiérarchie « Humaine » devra être mise en place derrière ce processus pour pouvoir gérer les fichiers annexes</p>
+
+<p>	  La hiérarchie aura une forme comme celle-ci</p>
+<pre class="terminal">	  + NomClient - NomDuProjet
+	      + Prospect
+	          - log
+                  + init
+	              - *remarks*
+	          + validation
+	          + …
+	      + Devis
+	          - log
+	          + init</pre>
+
+<p>	  Les + correspondent à des dossiers, les - à des fichiers. Dans le fichier de Log vous ajouterez à la fin pour chaque processus :
+	  - [Date Heure] « utilisateur qui a fait l’opération » : Passage du statut x au statut y (PS : x étant le statut précédant, et y le nouveau)
+	  (Optionnel) A chaque étape, inscrire un nouveau fichier dans l’état que l’on quitte avec les commentaires de l’utilisateur, qu’il aura entré dans l’interface graphique.</p>
+
+<p>	  Un processus peut commencer au stade Prospect, ou Devis ou Facture. Cela est défini par le choix de l’utilisateur lors de la création du client / projet. Les dossiers ne sont créés que lorsque l’on arrive à l’étape en question (on ne crée par l’arborescence avant).</p>
+
+<p>	  Un rapport des clients / projet et à l’étape où ils en sont devra pouvoir être généré.</p>
+
+<p>	  Avec un sujet comme celui-là, direct, on trouve 4 design pattern au moins … serez vous les retrouver ? En mettant en place les différents design pattern, les évolutions des processus, des possibilités, et l’optimisation seront un jeu d’enfant … bien entendu, les frameworks le font bien, c’est pourquoi (Moment relou incomming) vous n’avez pas le droit d’utiliser de framework pour gérer les design pattern ^^ Oui Swing est OK, mais pas itérator par exemple (oups en aurais-je cité un ?)</p>
+
+<div class="warning"><p>Design pattern attendu à retrouver : Itérator (+ composite ?), StateMachine, Factory, Singleton. Bonus : MVC, observez, autre :) ?</p></div>
+<div class="forbidden">
+  <p>Les frameworks qui gèrent les design patterns à votre place sont interdits (ex: iterator).</p>
+</div>
+    
+
+</body></html>
