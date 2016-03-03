@@ -1,13 +1,10 @@
-require("bootstrap/dist/css/bootstrap.min.css")
+
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDom from 'react-dom';
+import { Router, hashHistory} from 'react-router';
+import routes from './config/routes';
 
-export class App extends React.Component {
-	render() {
-		return (
-      <div>Simple React + Babel + Bootstrap + Webpack </div>
-		);
-	}
-}
-
-ReactDOM.render(<App/>, document.querySelector("#myApp"));
+ReactDom.render(
+    <Router history={hashHistory}>{routes}</Router>,
+    document.getElementById('app')
+);
