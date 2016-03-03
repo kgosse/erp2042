@@ -7,6 +7,7 @@ import styleable from 'react-styleable';
 import SelectField from 'material-ui/lib/select-field';
 import MenuItem from 'material-ui/lib/menus/menu-item';
 import RaisedButton from 'material-ui/lib/raised-button';
+import { browserHistory } from 'react-router';
 
 
 import css from './Login.css';
@@ -20,6 +21,10 @@ class Login extends React.Component {
     }
 
     handleChange = (event, index, value) => this.setState({value});
+
+    handleConnextion = () => {
+        browserHistory.push('/home');
+    };
 
     render(){
         return (
@@ -36,12 +41,17 @@ class Login extends React.Component {
                         </SelectField>
                     </div>
                     <div className={this.props.css.button}>
-                        <RaisedButton label="Se connecter" secondary={true}  />
+                        <RaisedButton
+                            label="Se connecter"
+                            secondary={true}
+                            onMouseUp={this.handleConnextion}
+                            onTouchEnd={this.handleConnextion}
+                        />
                     </div>
                 </div>
             </div>
         )
     }
-};
+}
 
 export default Login;
